@@ -12,8 +12,8 @@ export type Profile = {
   links: LinkItem[];
 };
 
-// 내 프로필과 링크 목록. id는 클릭 수 집계 키로 쓰이므로 한 번 정하면 바꾸지 않는다.
-// TODO: 보여주기용 더미값. 실제 이름·소개·사진·링크로 교체할 것.
+// 기본 프로필. /settings 에서 저장하면 DB에 저장된 프로필이 대신 쓰인다.
+// id는 클릭 수 집계 키로 쓰이므로 한 번 정하면 바꾸지 않는다.
 export const profile: Profile = {
   name: "홍길동",
   bio: "웹 개발자 · 오늘도 무언가를 만들고 있어요",

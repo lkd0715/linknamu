@@ -1,14 +1,14 @@
 import LinkCard from "@/components/LinkCard";
 import ProfileHeader from "@/components/ProfileHeader";
 import ThemeToggle from "@/components/ThemeToggle";
-import { profile } from "@/data/profile";
 import { getClickCounts } from "@/lib/clicks";
+import { getProfile } from "@/lib/profile";
 
 // 클릭 수를 매 요청마다 최신으로 보여준다.
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const counts = await getClickCounts();
+  const [profile, counts] = await Promise.all([getProfile(), getClickCounts()]);
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col px-4 py-10 sm:py-16">

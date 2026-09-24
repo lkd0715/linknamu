@@ -15,7 +15,7 @@ export default function ProfileHeader({ name, bio, image }: Props) {
         width={96}
         height={96}
         priority
-        unoptimized={image.endsWith(".svg")}
+        unoptimized={image.endsWith(".svg") || image.startsWith("data:")}
         className="h-24 w-24 rounded-full object-cover ring-4 ring-white shadow-md dark:ring-neutral-800"
       />
       <h1 className="mt-4 text-2xl font-bold">{name}</h1>

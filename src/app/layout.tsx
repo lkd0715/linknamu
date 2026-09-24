@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { profile } from "@/data/profile";
+import { getProfile } from "@/lib/profile";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -9,10 +9,13 @@ const geistSans = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: `${profile.name} | 링크나무`,
-  description: profile.bio,
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const profile = await getProfile();
+  return {
+    title: `${profile.name} | 링크나무`,
+    description: profile.bio,
+  };
+}
 
 export const viewport: Viewport = {
   width: "device-width",

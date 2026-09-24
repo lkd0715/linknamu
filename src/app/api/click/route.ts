@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
-import { profile } from "@/data/profile";
 import { getClickCounts } from "@/lib/clicks";
 import { getClicksCollection } from "@/lib/mongodb";
+import { getProfile } from "@/lib/profile";
 
 export const dynamic = "force-dynamic";
-
-const validIds = new Set(profile.links.map((link) => link.id));
 
 // 링크 클릭 1회 기록. body: { linkId: string }
 export async function POST(request: Request) {
@@ -16,7 +14,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "잘못된 요청 본문" }, { status: 400 });
   }
 
-  if (typeof linkId !== "string" || !validIds.has(linkId)) {
+  // 링크는 설정 페이지에서 바뀔 수 있으므로 요청마다 현재 목록으로 검사한다.
+  const { links } = await getProfile();
+  if (typeof linkId !== "string" || !links.some((link) => link.id === linkId)) {
     return NextResponse.json({ error: "알 수 없는 링크" }, { status: 400 });
   }
 

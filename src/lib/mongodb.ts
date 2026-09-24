@@ -16,11 +16,16 @@ function getClient(): Promise<MongoClient> | null {
   return globalForMongo._mongoClientPromise;
 }
 
-type ClickDoc = { _id: string; count: number };
-
-// MONGODB_URI가 없으면 null을 돌려준다. 호출하는 쪽은 집계 없이 동작해야 한다.
-export async function getClicksCollection() {
+// MONGODB_URI가 없으면 null을 돌려준다. 호출하는 쪽은 DB 없이 동작해야 한다.
+export async function getDb() {
   const client = getClient();
   if (!client) return null;
-  return (await client).db(dbName).collection<ClickDoc>("clicks");
+  return (await client).db(dbName);
+}
+
+type ClickDoc = { _id: string; count: number };
+
+export async function getClicksCollection() {
+  const db = await getDb();
+  return db?.collection<ClickDoc>("clicks") ?? null;
 }
