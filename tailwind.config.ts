@@ -15,7 +15,7 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", ...defaultTheme.fontFamily.sans],
+        sans: ["\"Pretendard Variable\"", "Pretendard", ...defaultTheme.fontFamily.sans],
       },
     },
   },

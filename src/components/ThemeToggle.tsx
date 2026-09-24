@@ -26,7 +26,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={theme === "dark" ? "밝은 화면으로 전환" : "어두운 화면으로 전환"}
-      className="rounded-full border border-neutral-200 bg-white p-2 text-lg shadow-sm transition hover:scale-105 dark:border-neutral-800 dark:bg-neutral-900"
+      className="glass rounded-full p-2 text-lg transition hover:scale-105"
     >
       <span aria-hidden>{theme === null ? "　" : theme === "dark" ? "☀️" : "🌙"}</span>
     </button>

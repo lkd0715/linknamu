@@ -19,7 +19,7 @@ export default async function SettingsPage() {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col px-4 py-10 sm:py-16">
       <div className="flex items-center justify-between">
-        <Link href="/" className="text-sm text-neutral-500 hover:text-green-600 dark:text-neutral-400">
+        <Link href="/" className="text-sm text-slate-500 hover:text-sky-600 dark:text-slate-400">
           ← 내 페이지
         </Link>
         <ThemeToggle />

@@ -3,17 +3,49 @@
 @tailwind utilities;
 
 :root {
-  --background: #f5f5f4;
-  --foreground: #171717;
+  --background: #eef7fb;
+  --foreground: #0f2a3a;
+  /* 하늘·민트·연보라가 은은하게 번지는 청량한 배경 */
+  --gradient:
+    radial-gradient(at 12% 8%, #bae6fd 0px, transparent 55%),
+    radial-gradient(at 88% 18%, #a7f3d0 0px, transparent 50%),
+    radial-gradient(at 70% 92%, #c7d2fe 0px, transparent 55%),
+    radial-gradient(at 8% 85%, #99f6e4 0px, transparent 45%),
+    linear-gradient(160deg, #f0f9ff 0%, #ecfeff 50%, #eef2ff 100%);
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: #07141f;
+  --foreground: #e6f4f8;
+  --gradient:
+    radial-gradient(at 12% 8%, rgba(14, 116, 144, 0.45) 0px, transparent 55%),
+    radial-gradient(at 88% 18%, rgba(13, 148, 136, 0.3) 0px, transparent 50%),
+    radial-gradient(at 70% 92%, rgba(67, 56, 202, 0.3) 0px, transparent 55%),
+    linear-gradient(160deg, #06121c 0%, #0a1a26 50%, #0c1224 100%);
   color-scheme: dark;
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background-color: var(--background);
+  background-image: var(--gradient);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+@layer components {
+  /* 반투명 유리 카드. 뒤의 그라데이션이 흐릿하게 비친다. */
+  .glass {
+    @apply border border-white/60 bg-white/45 shadow-[0_8px_32px_-12px_rgba(14,116,144,0.25)] backdrop-blur-xl backdrop-saturate-150;
+    @apply dark:border-white/10 dark:bg-white/[0.06] dark:shadow-[0_8px_32px_-12px_rgba(0,0,0,0.6)];
+  }
+
+  .glass-input {
+    @apply w-full rounded-xl border border-white/70 bg-white/50 px-3 py-2 outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:bg-white/80 focus:ring-2 focus:ring-sky-300/40;
+    @apply dark:border-white/10 dark:bg-white/5 dark:focus:border-sky-500 dark:focus:bg-white/10;
+  }
+
+  .btn-primary {
+    @apply rounded-xl bg-gradient-to-r from-sky-500 to-teal-400 px-4 py-2 font-semibold text-white shadow-[0_8px_20px_-8px_rgba(14,165,233,0.7)] transition hover:brightness-105 disabled:opacity-50;
+  }
 }

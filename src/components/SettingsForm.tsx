@@ -8,12 +8,10 @@ import type { LinkItem, Profile } from "@/data/profile";
 const DEFAULT_IMAGE = "/profile.svg";
 const IMAGE_SIZE = 256;
 
-const inputClass =
-  "w-full rounded-xl border border-neutral-300 bg-transparent px-3 py-2 outline-none focus:border-green-500 dark:border-neutral-700";
-const cardClass =
-  "rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-900";
+const inputClass = "glass-input";
+const cardClass = "glass rounded-2xl p-5";
 const smallButtonClass =
-  "rounded-lg border border-neutral-300 px-2 py-1 text-xs transition hover:border-green-500 disabled:opacity-30 dark:border-neutral-700";
+  "rounded-lg border border-white/70 bg-white/40 px-2 py-1 text-xs transition hover:border-sky-400 disabled:opacity-30 dark:border-white/10 dark:bg-white/5";
 
 // 클릭 수 집계 키로 쓰이는 링크 id. 한 번 만들면 바뀌지 않는다.
 function newLinkId() {
@@ -120,10 +118,10 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Profi
           <img
             src={image}
             alt="프로필 사진 미리보기"
-            className="h-20 w-20 shrink-0 rounded-full object-cover ring-4 ring-neutral-100 dark:ring-neutral-800"
+            className="h-20 w-20 shrink-0 rounded-full object-cover ring-4 ring-white/80 shadow-[0_10px_24px_-10px_rgba(14,116,144,0.55)] dark:ring-white/10"
           />
           <div className="flex flex-col gap-2">
-            <label className="cursor-pointer rounded-xl border border-neutral-300 px-3 py-1.5 text-center text-sm transition hover:border-green-500 dark:border-neutral-700">
+            <label className="glass-input cursor-pointer py-1.5 text-center text-sm hover:border-sky-400">
               사진 올리기
               <input type="file" accept="image/*" onChange={handleImageChange} className="sr-only" />
             </label>
@@ -131,7 +129,7 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Profi
               <button
                 type="button"
                 onClick={() => setImage(DEFAULT_IMAGE)}
-                className="text-xs text-neutral-500 hover:text-red-500"
+                className="text-xs text-slate-500 hover:text-red-500"
               >
                 기본 이미지로
               </button>
@@ -162,24 +160,24 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Profi
           onChange={(e) => setBio(e.target.value)}
           className={`mt-1 resize-none ${inputClass}`}
         />
-        <p className="mt-1 text-right text-xs text-neutral-400">{bio.length}/160</p>
+        <p className="mt-1 text-right text-xs text-slate-400">{bio.length}/160</p>
       </section>
 
       <section className={cardClass}>
         <div className="flex items-center justify-between">
           <h2 className="font-semibold">링크</h2>
-          <span className="text-xs text-neutral-400">{links.length}개</span>
+          <span className="text-xs text-slate-400">{links.length}개</span>
         </div>
 
         {links.length === 0 && (
-          <p className="mt-4 text-sm text-neutral-500">아직 링크가 없어요. 아래에서 추가해 보세요.</p>
+          <p className="mt-4 text-sm text-slate-500">아직 링크가 없어요. 아래에서 추가해 보세요.</p>
         )}
 
         <ul className="mt-4 flex flex-col gap-3">
           {links.map((link, index) => (
             <li
               key={link.id}
-              className="flex flex-col gap-2 rounded-xl border border-neutral-200 p-3 dark:border-neutral-800"
+              className="flex flex-col gap-2 rounded-xl border border-white/60 bg-white/30 p-3 dark:border-white/10 dark:bg-white/[0.03]"
             >
               <input
                 required
@@ -241,7 +239,7 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Profi
         <button
           type="button"
           onClick={addLink}
-          className="mt-3 w-full rounded-xl border border-dashed border-neutral-300 py-2 text-sm text-neutral-500 transition hover:border-green-500 hover:text-green-600 dark:border-neutral-700"
+          className="mt-3 w-full rounded-xl border border-dashed border-sky-300 py-2 text-sm text-sky-600 transition hover:bg-white/40 dark:border-sky-700 dark:text-sky-400 dark:hover:bg-white/5"
         >
           + 링크 추가
         </button>
@@ -250,7 +248,7 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Profi
       {status && (
         <p
           role="status"
-          className={`text-sm ${status.type === "success" ? "text-green-600" : "text-red-500"}`}
+          className={`text-sm ${status.type === "success" ? "text-teal-600 dark:text-teal-400" : "text-red-500"}`}
         >
           {status.message}
         </p>
@@ -260,7 +258,7 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Profi
         <button
           type="submit"
           disabled={pending}
-          className="flex-1 rounded-xl bg-green-600 px-4 py-3 font-semibold text-white shadow-md transition hover:bg-green-700 disabled:opacity-50"
+          className="btn-primary flex-1 py-3"
         >
           {pending ? "저장 중…" : "저장하기"}
         </button>
@@ -268,7 +266,7 @@ export default function SettingsForm({ initialProfile }: { initialProfile: Profi
           type="button"
           onClick={handleLogout}
           disabled={pending}
-          className="rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm dark:border-neutral-700 dark:bg-neutral-900"
+          className="glass rounded-xl px-4 py-3 text-sm"
         >
           로그아웃
         </button>

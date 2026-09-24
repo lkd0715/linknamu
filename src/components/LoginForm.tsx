@@ -25,7 +25,7 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-6 flex flex-col gap-3 rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-900"
+      className="glass mt-6 flex flex-col gap-3 rounded-2xl p-5"
     >
       <label htmlFor="password" className="text-sm font-medium">
         관리자 비밀번호
@@ -37,13 +37,13 @@ export default function LoginForm() {
         required
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="rounded-xl border border-neutral-300 bg-transparent px-3 py-2 outline-none focus:border-green-500 dark:border-neutral-700"
+        className="glass-input"
       />
       {error && <p className="text-sm text-red-500">{error}</p>}
       <button
         type="submit"
         disabled={pending}
-        className="rounded-xl bg-green-600 px-4 py-2 font-semibold text-white transition hover:bg-green-700 disabled:opacity-50"
+        className="btn-primary"
       >
         {pending ? "확인 중…" : "로그인"}
       </button>

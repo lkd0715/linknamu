@@ -26,7 +26,7 @@ export default async function Home() {
         ))}
       </ul>
 
-      <footer className="mt-auto pt-12 text-center text-xs text-neutral-400">
+      <footer className="mt-auto pt-12 text-center text-xs text-slate-400">
         🌳 링크나무
       </footer>
     </main>
